@@ -2,34 +2,25 @@
 NOTE: Requires Markdown Extra. See http://michelf.ca/projects/php-markdown/extra/
  --> 
 
-# A1. Important Resources
-## The companion website
-This document is part of an effort to increase the consciousness with which C# developers do their daily job on a professional level. Therefore I've started a dedicated CodePlex site that can be found at [www.csharpcodingguidelines.com](http://www.csharpcodingguidelines.com).
+# A1. Resources
 
-In addition to the most up to date version of this document, you'll find:
+## Books
+* [Facts and Fallacies of Software Engineering](https://www.amazon.com/Facts-Fallacies-Software-Engineering-Robert/dp/0321117425) (Robert Glass)  
 
-- A companion quick-reference sheet
-- Visual Studio 2010/2012 Rule Sets for different types of systems.
-- [ReSharper](http://www.jetbrains.com/resharper/download/) layout configurations matching the rules in chapter 10.
-- A place to discuss C# coding quality.
+* [Software Craftsmanship: The New Imperative](https://www.amazon.com/Software-Craftsmanship-Imperative-Pete-McBreen/dp/0201733862) (Pete McBreen)  
 
-## Useful links
-In addition to the many links provided throughout this document, I'd like to recommend the following books, articles and sites for everyone interested in software quality:
+* [The Pragmatic Programmer: From Journeyman to Master](https://www.amazon.com/Pragmatic-Programmer-Journeyman-Master/dp/020161622X) (Andy Hunt &amp; Dave Thomas)  
 
 * [Code Complete: A Practical Handbook of Software Construction](http://www.amazon.com/Code-Complete-Practical-Handbook-Construction/dp/0735619670) (Steve McConnel)  
-One of the best books I've ever read. It deals with all aspects of software development, and even though the book was originally written in 2004 you'll be surprised when you see how accurate it still is. I wrote a [review](http://www.continuousimprover.com/2009/07/book-review-code-complete-2nd-edition.html) in 2009 if you want to get a sense of its contents.
 
-* [The Art of Agile Development](http://www.amazon.com/Art-Agile-Development-James-Shore/dp/0596527675) (James Shore)  
-Another great all-encompassing trip through the many practices preached by processes like Scrum and Extreme Programming. If you're looking for a quick introduction with a pragmatic touch, make sure you read James's book.
+* [Design Patterns: Elements of Reusable Object-Oriented Software](https://www.amazon.com/Design-Patterns-Elements-Reusable-Object-Oriented/dp/0201633612) (Erich Gamma, Richard Helm, Ralph Johnson, John Vlissides, Grady Booch)  
+
+* [Patterns of Enterprise Application Architecture](https://www.amazon.com/Patterns-Enterprise-Application-Architecture-Martin/dp/0321127420) (Martin Fowler) 
+
+* [AntiPatterns: Refactoring Software, Architectures, and Projects in Crisis](https://www.amazon.com/AntiPatterns-Refactoring-Software-Architectures-Projects/dp/0471197130) (William J. Brown, Raphael C. Malveau, Hays W. "Skip" McCormick, Thomas J. Mowbray)  
+
+* [Clean Code: A Handbook of Agile Software Craftsmanship](https://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882) (Robert Martin)  
+
+* [Domain-Driven Design: Tackling Complexity in the Heart of Software](https://www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215) (Eric Evans)
 
 * [Applying Domain-Driven Design and Patterns: With Examples in C# and .NET](http://www.amazon.com/Applying-Domain-Driven-Design-Patterns-Examples/dp/0321268202) (Jimmy Nilsson)  
-The book that started my interest for both Domain-Driven Design and Test-Driven Development. It's one of those books that I wished I had read a few years earlier. It would have spared me from many mistakes.
-
-* [Jeremy D. Miller's Blog](http://codebetter.com/blogs/jeremy.miller/)  
-Although he is not that active anymore, in the last couple of years he has written some excellent blog posts on Test-Driven Development, Design Patterns and design principles. I've learned a lot from his real-life and practical insights.
-
-* [LINQ Framework Design Guidelines](http://blogs.msdn.com/b/mirceat/archive/2008/03/13/linq-framework-design-guidelines.aspx)  
-A set of rules and recommendations that you should adhere to when creating your own implementations of IQueryable.
-
-* [Best Practices for c# async/await](http://code.jonwagner.com/2012/09/06/best-practices-for-c-asyncawait/)  
-The rationale and source of several of the new guidelines in this document, written by [Jon Wagner](https://twitter.com/jonwagnerdotcom).

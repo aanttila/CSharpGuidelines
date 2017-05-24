@@ -4,7 +4,7 @@ NOTE: Requires Markdown Extra. See http://michelf.ca/projects/php-markdown/extra
 
 # 2. Class Design Guidelines
 
-### <a name="av1000"></a> A class or interface should have a single purpose (AV1000) ![](images/1.png)
+### <a name="av1000"></a> Always have a single purpose for a class or interface (AV1000) ![](images/1.png)
 
 A class or interface should have a single purpose within the system it functions in. In general, a class either represents a primitive type like an email or ISBN number, an abstraction of some business concept, a plain data structure, or is responsible for orchestrating the interaction between other classes. It is never a combination of those. This rule is widely known as the [Single Responsibility Principle](http://www.objectmentor.com/resources/articles/srp.pdf), one of the S.O.L.I.D. principles.
 
@@ -14,19 +14,19 @@ A class or interface should have a single purpose within the system it functions
 
 **Note** If you create a class representing a primitive type you can greatly simplify its use by making it immutable.
 
-### <a name="av1001"></a> Only create a constructor that returns a useful object (AV1001) ![](images/3.png)
+### <a name="av1001"></a> Always create constructors that returns a useful object (AV1001) ![](images/3.png)
 
-There should be no need to set additional properties before the object can be used for whatever purpose it was designed. However, if your constructor needs more than three parameters (which violates AV1561), your class might have too much responsibility (and violates AV1000).
+There should be no need to set additional properties before the object can be used for whatever purpose it was designed. However, if your constructor needs many parameters (which violates AV1561), your class might have too much responsibility (and violates AV1000).
 
-### <a name="av1003"></a> An interface should be small and focused (AV1003) ![](images/2.png)
+### <a name="av1003"></a> Always have small and focused interfaces (AV1003) ![](images/2.png)
 
 Interfaces should have a name that clearly explains their purpose or role in the system. Do not combine many vaguely related members on the same interface just because they were all on the same class. Separate the members based on the responsibility of those members, so that callers only need to call or implement the interface related to a particular task. This rule is more commonly known as the [Interface Segregation Principle](http://www.objectmentor.com/resources/articles/isp.pdf).
 
-### <a name="av1004"></a> Use an interface rather than a base class to support multiple implementations (AV1004) ![](images/3.png)
+### <a name="av1004"></a> Always use an interface rather than a base class to support multiple implementations (AV1004) ![](images/3.png)
 
 If you want to expose an extension point from your class, expose it as an interface rather than as a base class. You don't want to force users of that extension point to derive their implementations from a base class that might have an undesired behavior. However, for their convenience you may implement a(n abstract) default implementation that can serve as a starting point.
 
-### <a name="av1005"></a> Use an interface to decouple classes from each other (AV1005) ![](images/2.png)
+### <a name="av1005"></a> Prefer decoupling classes from each other using interfaces (AV1005) ![](images/2.png)
 
 Interfaces are a very effective mechanism for decoupling classes from each other:
 
@@ -42,7 +42,7 @@ With the exception of extension method containers, static classes very often lea
 
 **Note:** If you really need that static class, mark it as static so that the compiler can prevent instance members and instantiating your class. This relieves you of creating an explicit private constructor.
 
-### <a name="av1010"></a> Don't hide inherited members with the new keyword (AV1010) ![](images/1.png)
+### <a name="av1010"></a> Never hide inherited members with the `new` keyword (AV1010) ![](images/1.png)
 
 Not only does the new keyword break [Polymorphism](http://en.wikipedia.org/wiki/Polymorphism_in_object-oriented_programming), one of the most essential object-orientation principles, it also makes sub-classes more difficult to understand. Consider the following two classes:
 
@@ -64,7 +64,7 @@ Not only does the new keyword break [Polymorphism](http://en.wikipedia.org/wiki/
 
 This will cause behavior that you would not normally expect from class hierarchies:
 
-	PocketBook pocketBook = new PocketBook();
+	var pocketBook = new PocketBook();
 	
 	pocketBook.Print(); // Outputs "Printing PocketBook "
 	
@@ -72,13 +72,13 @@ This will cause behavior that you would not normally expect from class hierarchi
 
 It should not make a difference whether you call `Print()` through a reference to the base class or through the derived class.
 
-### <a name="av1011"></a> It should be possible to treat a derived object as if it were a base class object (AV1011) ![](images/2.png)
+### <a name="av1011"></a> Always allow for a derived object to be treated as if it were its base class object (AV1011) ![](images/2.png)
 
 In other words, you should be able to use a reference to an object of a derived class wherever a reference to its base class object is used without knowing the specific derived class. A very notorious example of a violation of this rule is throwing a `NotImplementedException` when overriding some of the base-class methods. A less subtle example is not honoring the behavior expected by the base class.   
   
 **Note:** This rule is also known as the Liskov Substitution Principle, one of the [S.O.L.I.D.](http://www.lostechies.com/blogs/chad_myers/archive/2008/03/07/pablo-s-topic-of-the-month-march-solid-principles.aspx) principles.
 
-### <a name="av1013"></a> Don't refer to derived classes from the base class (AV1013) ![](images/1.png)
+### <a name="av1013"></a> Never refer to derived classes from the base class (AV1013) ![](images/1.png)
 
 Having dependencies from a base class to its sub-classes goes against proper object-oriented design and might prevent other developers from adding new derived classes.
 
@@ -100,7 +100,7 @@ This means that two classes know about each other's public members or rely on ea
 
 **Exception:** Domain models such as defined in [Domain-Driven Design](http://domaindrivendesign.org/) tend to occasionally involve bidirectional associations that model real-life associations. In those cases, make sure they are really necessary, and if they are, keep them in.
 
-### <a name="av1025"></a> Classes should have state and behavior (AV1025) ![](images/1.png)
+### <a name="av1025"></a> Prefer classes with state and behavior (AV1025) ![](images/1.png)
 
 In general, if you find a lot of data-only classes in your code base, you probably also have a few (static) classes with a lot of behavior (see AV1008). Use the principles of object-orientation explained in this section and move the logic close to the data it applies to.
 

@@ -4,11 +4,8 @@ NOTE: Requires Markdown Extra. See http://michelf.ca/projects/php-markdown/extra
 
 # 5. Maintainability Guidelines
 
-### <a name="av1500"></a> Methods should not exceed 7 statements (AV1500) ![](images/1.png)
-A method that requires more than 7 statements is simply doing too much or has too many responsibilities. It also requires the human mind to analyze the exact statements to understand what the code is doing. Break it down into multiple small and focused methods with self-explaining names, but make sure the high-level algorithm is still clear.
-
-### <a name="av1501"></a> Make all members private and types internal by default (AV1501) ![](images/1.png)
-To make a more conscious decision on which members to make available to other classes, first restrict the scope as much as possible. Then carefully decide what to expose as a public member or type.
+### <a name="av1500"></a> Prefer a small number of statements in a method (AV1500) ![](images/1.png)
+A method that requires many statements is simply doing too much or has too many responsibilities. It also requires the human mind to analyze the exact statements to understand what the code is doing. Break it down into multiple small and focused methods with self-explaining names, but make sure the high-level algorithm is still clear.
 
 ### <a name="av1502"></a> Avoid conditions with double negatives (AV1502) ![](images/2.png)
 Although a property like `customer.HasNoOrders` makes sense, avoid using it in a negative condition like this:
@@ -17,20 +14,20 @@ Although a property like `customer.HasNoOrders` makes sense, avoid using it in a
 
 Double negatives are more difficult to grasp than simple expressions, and people tend to read over the double negative easily.
 
-### <a name="av1505"></a> Name assemblies after their contained namespace (AV1505) ![](images/3.png)
+### <a name="av1505"></a> Always name assemblies after their contained namespace (AV1505) ![](images/3.png)
 All DLLs should be named according to the pattern *Company*.*Component*.dll where *Company* refers to your company's name and *Component* contains one or more dot-separated clauses. For example `AvivaSolutions.Web.Controls.dll`.
 
 As an example, consider a group of classes organized under the namespace `AvivaSolutions.Web.Binding` exposed by a certain assembly. According to this guideline, that assembly should be called `AvivaSolutions.Web.Binding.dll`. 
 
 **Exception:** If you decide to combine classes from multiple unrelated namespaces into one assembly, consider suffixing the assembly name with `Core`, but do not use that suffix in the namespaces. For instance, `AvivaSolutions.Consulting.Core.dll`.
 
-### <a name="av1506"></a> Name a source file to the type it contains (AV1506) ![](images/3.png)
+### <a name="av1506"></a> Always name a source file based on the type it contains (AV1506) ![](images/3.png)
 Use Pascal casing to name the file and don't use underscores.
 
-### <a name="av1507"></a> Limit the contents of a source code file to one type (AV1507) ![](images/3.png)
+### <a name="av1507"></a> Always limit the contents of a source code file to one type (AV1507) ![](images/3.png)
 **Exception:** Nested types should, for obvious reasons, be part of the same file.
 
-### <a name="av1508"></a> Name a source file to the logical function of the partial type (AV1508) ![](images/3.png)
+### <a name="av1508"></a> Always name a source file to the logical function of the partial type (AV1508) ![](images/3.png)
 When using partial types and allocating a part per file, name each file after the logical part that part plays. For example:
 
 	// In MyClass.cs
@@ -41,7 +38,7 @@ When using partial types and allocating a part per file, name each file after th
 	public partial class MyClass
 	{...}
 
-### <a name="av1510"></a> Use using statements instead of fully qualified type names (AV1510) ![](images/3.png)
+### <a name="av1510"></a> Prefer `using` statements over fully qualified type names (AV1510) ![](images/3.png)
 Limit usage of fully qualified type names to prevent name clashing. For example, don't do this:
 
 	var list = new System.Collections.Generic.List();
@@ -56,7 +53,7 @@ If you do need to prevent name clashing, use a `using` directive to assign an al
 
 	using Label = System.Web.UI.WebControls.Label;
 
-### <a name="av1515"></a> Don't use "magic" numbers (AV1515) ![](images/1.png)
+### <a name="av1515"></a> Never use "magic" numbers (AV1515) ![](images/1.png)
 Don't use literal values, either numeric or strings, in your code, other than to define symbolic constants. For example:
 
 	public class Whatever  
@@ -80,14 +77,13 @@ If the value of one constant depends on the value of another, attempt to make th
 
 **Note:** An enumeration can often be used for certain types of symbolic constants.
 
-### <a name="av1520"></a> Only use var when the type is very obvious (AV1520) ![](images/1.png)
-Only use `var` as the result of a LINQ query, or if the type is very obvious from the same statement and using it would improve readability. So don't
+### <a name="av1520"></a> Prefer using `var` when the type is obvious (AV1520) ![](images/1.png)
+Use `var` as the result of a LINQ query, or if the type is obvious from the same statement or context and using it would improve readability. So be careful in cases like this:
 
-	var i = 3;									// what type? int? uint? float?
-	var myfoo = MyFactoryMethod.Create("arg");	// Not obvious what base-class or			
-												// interface to expect. Also difficult
-												// to refactor if you can't search for
-												// the class
+	var myfoo = MyFactoryMethod.Create("arg");	// Not obvious what base-class or  
+												// interface to expect. Also difficult  
+												// to refactor if you can't search for  
+												// the class  
 
 Instead, use `var` like this:
 
@@ -97,15 +93,15 @@ Instead, use `var` like this:
 
 In all of three above examples it is clear what type to expect. For a more detailed rationale about the advantages and disadvantages of using `var`, read Eric Lippert's [Uses and misuses of implicit typing](http://blogs.msdn.com/b/ericlippert/archive/2011/04/20/uses-and-misuses-of-implicit-typing.aspx).
 
-### <a name="av1521"></a> Declare and initialize variables as late as possible (AV1521) ![](images/2.png)
+### <a name="av1521"></a> Always declare and initialize variables as late as possible (AV1521) ![](images/2.png)
 Avoid the C and Visual Basic styles where all variables have to be defined at the beginning of a block, but rather define and initialize each variable at the point where it is needed.
 
-### <a name="av1522"></a> Assign each variable in a separate statement (AV1522) ![](images/1.png)
+### <a name="av1522"></a> Always assign each variable in a separate statement (AV1522) ![](images/1.png)
 Don't use confusing constructs like the one below:
 
 	var result = someField = GetSomeMethod();
 
-### <a name="av1523"></a> Favor Object and Collection Initializers over separate statements (AV1523) ![](images/2.png)
+### <a name="av1523"></a> Prefer object and collection initializers over separate statements (AV1523) ![](images/2.png)
 Instead of:
 
 	var startInfo = new ProcessStartInfo("myapp.exe");	
@@ -130,8 +126,7 @@ Use collection or [dictionary initializers](http://msdn.microsoft.com/en-us/libr
 
 	var countries = new List { "Netherlands", "United States" };
 
-### <a name="av1525"></a> Don't make explicit comparisons to `true` or `false` (AV1525) ![](images/1.png)
-
+### <a name="av1525"></a> Never make explicit comparisons to `true` or `false` (AV1525) ![](images/1.png)
 It is usually bad style to compare a `bool`-type expression to `true` or `false`. For example:
 
 	while (condition == false)// wrong; bad style  
@@ -139,7 +134,7 @@ It is usually bad style to compare a `bool`-type expression to `true` or `false`
 	while (((condition == true) == true) == true)// where do you stop?  
 	while (condition)// OK
 
-### <a name="av1530"></a> Don't change a loop variable inside a for loop (AV1530) ![](images/2.png)
+### <a name="av1530"></a> Never change a loop variable inside a for loop (AV1530) ![](images/2.png)
 Updating the loop variable within the loop body is generally considered confusing, even more so if the loop variable is modified in more than one place.
 
 	for (int index = 0; index < 10; ++index)  
@@ -171,8 +166,8 @@ Please note that this also avoids possible confusion in statements of the form:
 		}  
 	}
 
-### <a name="av1536"></a> Always add a `default` block after the last `case` in a `switch` statement (AV1536) ![](images/1.png)
-Add a descriptive comment if the `default` block is supposed to be empty. Moreover, if that block is not supposed to be reached throw an `InvalidOperationException` to detect future changes that may fall through the existing cases. This ensures better code, because all paths the code can travel have been thought about.
+### <a name="av1536"></a> Prefer a `default` block after the last `case` in a `switch` statement (AV1536) ![](images/1.png)
+Consider adding a descriptive comment if the `default` block is supposed to be empty. Moreover, if that block is not supposed to be reached throw an `InvalidOperationException` to detect future changes that may fall through the existing cases. This ensures better code, because all paths the code can travel have been thought about.
 
 	void Foo(string answer)  
 	{  
@@ -198,7 +193,7 @@ Add a descriptive comment if the `default` block is supposed to be empty. Moreov
 		}  
 	}
 
-### <a name="av1537"></a> Finish every if-else-if statement with an else-part (AV1537) ![](images/2.png)
+### <a name="av1537"></a> Prefer an `else`-part after every `if`-`else`-`if `statement (AV1537) ![](images/2.png)
 For example:
 
 	void Foo(string answer)  
@@ -221,7 +216,7 @@ For example:
 ### <a name="av1540"></a> Be reluctant with multiple return statements (AV1540) ![](images/2.png)
 One entry, one exit is a sound principle and keeps control flow readable. However, if the method is very small and complies with guideline AV1500 then multiple return statements may actually improve readability over some central boolean flag that is updated at various points.
 
-### <a name="av1545"></a> Don't use if-else statements instead of a simple (conditional) assignment (AV1545) ![](images/2.png)
+### <a name="av1545"></a> Prefer simple (conditional) assignments instead of `if`-`else` statements (AV1545) ![](images/2.png)
 Express your intentions directly. For example, rather than:
 
 	bool pos;
@@ -258,7 +253,7 @@ write:
 
 	return someString ?? "Unavailable";
 
-### <a name="av1547"></a> Encapsulate complex expressions in a method or property (AV1547) ![](images/1.png)
+### <a name="av1547"></a> Prefer encapsulation of complex expressions in a method or property (AV1547) ![](images/1.png)
 Consider the following example:
 
 	if (member.HidesBaseClassMember && (member.NodeType != NodeType.InstanceInitializer))
@@ -273,24 +268,21 @@ In order to understand what this expression is about, you need to analyze its ex
 		// do something
 	}  
   
-  
 	private bool NonConstructorMemberUsesNewKeyword(Member member)  
 	{  
-		return
-			(member.HidesBaseClassMember &&
-			(member.NodeType != NodeType.InstanceInitializer)  
+		return member.HidesBaseClassMember && (member.NodeType != NodeType.InstanceInitializer);  
 	}
 
 You still need to understand the expression if you are modifying it, but the calling code is now much easier to grasp.
 
-### <a name="av1551"></a> Call the more overloaded method from other overloads (AV1551) ![](images/2.png)
+### <a name="av1551"></a> Prefer calling the more overloaded method from other overloads (AV1551) ![](images/2.png)
 This guideline only applies to overloads that are intended to provide optional arguments. Consider, for example, the following code snippet:
 
 	public class MyString  
 	{
 		private string someText;
 		
-	    	public int IndexOf(string phrase)  
+	    public int IndexOf(string phrase)  
 		{  
 			return IndexOf(phrase, 0); 
 		}
@@ -310,7 +302,7 @@ The class `MyString` provides three overloads for the `IndexOf` method, but two 
 
 **Important:** If you also want to allow derived classes to override these methods, define the most complete overload as a `protected virtual` method that is called by all overloads.
 
-### <a name="av1553"></a> Only use optional arguments to replace overloads (AV1553) ![](images/1.png)
+### <a name="av1553"></a> Prefer using optional arguments only when replacing overloads (AV1553) ![](images/1.png)
 The only valid reason for using C# 4.0's optional arguments is to replace the example from rule AV1551 with a single method like:
 
 	public virtual int IndexOf(string phrase, int startIndex = 0, int count = 0)
@@ -318,23 +310,23 @@ The only valid reason for using C# 4.0's optional arguments is to replace the ex
 		return someText.IndexOf(phrase, startIndex, count);
 	}
 
-If the optional parameter is a reference type then it can only have a default value of `null`. But since strings, lists and collections should never be `null` according to rule AV1235, you must use overloaded methods instead.
+If the optional parameter is a reference type then it can only have a default value of `null`. But since lists and collections should never be `null` according to rule AV1235, you must use overloaded methods instead.
 
 **Note:** The default values of the optional parameters are stored at the caller side. As such, changing the default value without recompiling the calling code will not apply the new default value properly.
 
 **Note:** When an interface method defines an optional parameter, its default value is not considered during overload resolution unless you call the concrete class through the interface reference. See [this post by Eric Lippert](http://blogs.msdn.com/b/ericlippert/archive/2011/05/09/optional-argument-corner-cases-part-one.aspx) for more details.
 
 ### <a name="av1555"></a> Avoid using named arguments (AV1555) ![](images/1.png)
-C# 4.0's named arguments have been introduced to make it easier to call COM components that are known for offering many optional parameters. If you need named arguments to improve the readability of the call to a method, that method is probably doing too much and should be refactored.
+C#'s named arguments make it easier to call COM components that are known for offering many optional parameters. If you need named arguments to improve the readability of the call to a method, that method is probably doing too much and should be refactored.
 
 **Exception:** The only exception where named arguments improve readability is when calling a method of some code base you don't control that has a `bool` parameter, like this:  
 
-	object[] myAttributes = type.GetCustomAttributes(typeof(MyAttribute), inherit: false);
+	var myAttributes = type.GetCustomAttributes(typeof(MyAttribute), inherit: false);
 
-### <a name="av1561"></a> Don't allow methods and constructors with more than three parameters (AV1561) ![](images/1.png)
-If you create a method with more than three parameters, use a structure or class to pass multiple arguments, as explained in the [Specification design pattern](http://en.wikipedia.org/wiki/Specification_pattern). In general, the fewer the parameters, the easier it is to understand the method. Additionally, unit testing a method with many parameters requires many scenarios to test.
+### <a name="av1561"></a> Prefer a small number of arguments for methods and constructors (AV1561) ![](images/1.png)
+If you create a method with many parameters, use a structure or class to pass multiple arguments, as explained in the [Specification design pattern](http://en.wikipedia.org/wiki/Specification_pattern). In general, the fewer the parameters, the easier it is to understand the method. Additionally, unit testing a method with many parameters requires many scenarios to test.
 
-### <a name="av1562"></a> Don't use `ref` or `out` parameters (AV1562) ![](images/1.png)
+### <a name="av1562"></a> Avoid use `ref` or `out` parameters (AV1562) ![](images/1.png)
 They make code less understandable and might cause people to introduce bugs. Instead, return compound objects.
 
 ### <a name="av1564"></a> Avoid methods that take a bool flag (AV1564) ![](images/2.png)
@@ -344,15 +336,15 @@ Consider the following method signature:
 
 On first sight this signature seems perfectly fine, but when calling this method you will lose this purpose completely:
 
-	Customer customer = CreateCustomer(true);
+	var customer = CreateCustomer(true);
 
 Often, a method taking such a flag is doing more than one thing and needs to be refactored into two or more methods. An alternative solution is to replace the flag with an enumeration.
 
-### <a name="av1568"></a> Don't use parameters as temporary variables (AV1568) ![](images/3.png)
+### <a name="av1568"></a> Never use parameters as temporary variables (AV1568) ![](images/3.png)
 Never use a parameter as a convenient variable for storing temporary state. Even though the type of your temporary variable may be the same, the name usually does not reflect the purpose of the temporary variable.
 
 ### <a name="av1570"></a> Always check the result of an `as` operation (AV1570) ![](images/1.png)
 If you use `as` to obtain a certain interface reference from an object, always ensure that this operation does not return `null`. Failure to do so may cause a `NullReferenceException` at a much later stage if the object did not implement that interface.
 
-### <a name="av1575"></a> Don't comment out code (AV1575) ![](images/1.png)
+### <a name="av1575"></a> Never comment out code (AV1575) ![](images/1.png)
 Never check in code that is commented out. Instead, use a work item tracking system to keep track of some work to be done. Nobody knows what to do when they encounter a block of commented-out code. Was it temporarily disabled for testing purposes? Was it copied as an example? Should I delete it?
