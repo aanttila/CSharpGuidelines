@@ -40,7 +40,7 @@ NOTE: Requires Markdown Extra. See http://michelf.ca/projects/php-markdown/extra
 **Member Design**  
 
 * Always allow properties to be set in any order (AV1100)  
-* Never use mutual exclusive properties (AV1110)  
+* Never use mutually exclusive properties (AV1110)  
 * Prefer methods and properties that only do one thing (AV1115)  
 * Never expose stateful objects through static members (AV1125)   
 * Always expose `IEnumerable<T>` or `ICollection<T>` instead of a concrete collection class (AV1130)   
