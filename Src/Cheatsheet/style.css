@@ -54,7 +54,7 @@ h1 tt, h1 code, h2 tt, h2 code, h3 tt, h3 code, h4 tt, h4 code, h5 tt, h5 code, 
 
 h1 {
   font-size: 28px;
-    page-break-before: always;
+  page-break-before: always;
 }
 
 h2 {
