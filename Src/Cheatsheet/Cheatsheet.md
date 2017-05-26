@@ -66,7 +66,7 @@ NOTE: Requires Markdown Extra. See http://michelf.ca/projects/php-markdown/extra
 * Prefer a small number of statements in a method (AV1500)  
 * Avoid conditions with double negatives (AV1502)  
 * Never use "magic numbers" (AV1515)  
-* Prefer using `var` when the type is very obvious (AV1520)  
+* Prefer using `var` when the type is obvious (AV1520)  
 * Always declare and initialize variables as late as possible (AV1521)  
 * Prefer object and collection initializers over separate statements (AV1523)  
 * Never make explicit comparisons to `true` or `false` (AV1525)  
